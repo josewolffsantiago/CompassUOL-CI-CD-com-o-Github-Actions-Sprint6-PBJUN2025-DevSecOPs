@@ -21,4 +21,4 @@ jobs:
       with:
         context: ./hello-app/main
         push: true
-        tags: josesantiagowolff/hello-app:v1 
+        tags: josesantiagowolff/hello-app:v2 
