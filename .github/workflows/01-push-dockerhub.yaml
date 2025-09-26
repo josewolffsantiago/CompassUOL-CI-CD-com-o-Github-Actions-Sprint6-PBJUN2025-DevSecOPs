@@ -6,6 +6,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      TAG: ${{ github.sha }}
+
+
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
@@ -21,4 +25,24 @@ jobs:
       with:
         context: ./hello-app/main
         push: true
-        tags: josesantiagowolff/hello-app:v2 
+        tags: josesantiagowolff/hello-app:${{ env.TAG }}
+  
+  
+    - name: Clone repositorio do manifesto e Push
+      run: |
+        git config --global user.name "josesantiagowolff"
+        git config --global user.email "jose.gustavo@estudante.ifmt.edu.br"
+
+        git clone https://x-access-token:${{ secrets.TOKEN_GH }}@github.com/josewolffsantiago/CompassUOL-CI-CD-ArgoCD-Sprint6-PBJUN2025-DevSecOPs.git
+        cd gitops-microservices/k8s
+
+        sed -i "s|image: .*|image: josesantiagowolff:${{ env.TAG }}|" deployment.yaml
+
+        git add deployment.yaml
+        if git diff --cached --quiet; then
+          echo "No changes to commit"
+        else
+          git commit -m "Update image to ${{ env.TAG }} [skip ci]"
+          git push
+        fi
+
