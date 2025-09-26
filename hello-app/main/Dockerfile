@@ -1,7 +1,7 @@
 FROM python:3.14.0rc3-alpine3.22
 WORKDIR /app
 COPY requirements.txt .
-RUN  apk install --no-cache-dir -r requirements.txt
+RUN  apk add --no-cache-dir -r requirements.txt
 COPY . .
 
 EXPOSE 8000
