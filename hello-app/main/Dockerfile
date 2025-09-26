@@ -6,6 +6,8 @@ RUN apk add --no-cache gcc musl-dev libffi-dev openssl-dev python3-dev build-bas
 
 COPY requirements.txt .
 
+RUN pip install --upgrade pip setuptools wheel
+
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
