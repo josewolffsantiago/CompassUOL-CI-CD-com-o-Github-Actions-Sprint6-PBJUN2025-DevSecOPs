@@ -18,10 +18,10 @@ jobs:
 
     steps:
 
-    - name: Stop loops from github # Notei que estava em loop infinito com o github e vou testar este código - v3 foi dada pelo Gemini
+    - name: Stop loops from github V3 # Notei que estava em loop infinito com o github e vou testar este código - a partir do v3 foi dada pelo Gemini
       if: "!contains(github.event.head_commit.message, '[skip ci]')"
       run: |
-        echo "Triggered by GitHub Actions bot — skipping workflow."
+        echo "Trigger atrelado ao GitHub ACTIONS - já fui criado, então parei"
         exit 0
 
       
@@ -34,8 +34,13 @@ jobs:
     - name: Modify main.py for Docker Build
       run: |
         sed -i 's/.*return.*/    return {\"message\": \"Hello World from docker hello-app:${{ env.TAG }}\"}/' ./hello-app/main/main.py
-
         
+        git add ./hello-app/main/main.py
+
+        git commit -m " Update main.py on ${{ env.TAG }}"
+
+        git push https://x-access-token:${{ secrets.TOKEN_GH }}@github.com/josewolffsantiago/CompassUOL-CI-CD-com-o-Github-Actions-Sprint6-PBJUN2025-DevSecOPs.git
+
     - name: Login to Docker Hub
       uses: docker/login-action@v3
       with:
@@ -59,6 +64,7 @@ jobs:
         git config --global user.email "jose.gustavo@estudante.ifmt.edu.br"
 
         git clone https://x-access-token:${{ secrets.TOKEN_GH }}@github.com/josewolffsantiago/CompassUOL-CI-CD-ArgoCD-Sprint6-PBJUN2025-DevSecOPs.git
+        
         cd CompassUOL-CI-CD-ArgoCD-Sprint6-PBJUN2025-DevSecOPs/gitops-microservices/k8s
 
         sed -i "s|image: .*|image: josesantiagowolff/hello-app:${{ env.TAG }}|" deployment.yaml
