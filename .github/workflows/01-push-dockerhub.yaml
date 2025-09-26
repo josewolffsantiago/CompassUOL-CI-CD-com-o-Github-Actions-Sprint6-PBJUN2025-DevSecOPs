@@ -21,7 +21,7 @@ jobs:
         token: ${{ secrets.TOKEN_GH }} 
 
     
-    - name: Stop infinite loop if commit is from GitHub Actions
+    - name: Stop loops from github # Notei que estava em loop infinito com o github e vou testar este código
       if: github.actor == 'github-actions'
       run: |
         echo "Triggered by GitHub Actions bot — skipping workflow."
@@ -36,9 +36,9 @@ jobs:
     - name: Make a Dockerfile - modify main.py #teste apenas, se der certo irá continuar.
     #Sinceramente, acho mais simples usar o GH Actions para fazer o próprio Dockerfile, já que quero que ele crie também o main.py com a versão para ser atualizado.
       run: |
-        git config --global user.name "josewolffsantiago"
+        git config --global user.name "GitHub Actions"
 
-        git config --global user.email "jose.gustavo@estudante.ifmt.edu.br"
+        git config --global user.email "actions@github.com
 
         git clone https://x-access-token:${{ secrets.TOKEN_GH }}@github.com/josewolffsantiago/CompassUOL-CI-CD-com-o-Github-Actions-Sprint6-PBJUN2025-DevSecOPs.git
 
@@ -62,8 +62,9 @@ jobs:
   
     - name: Clone repositorio do manifesto e Push
       run: |
-        git config --global user.name "josewolffsantiago"
-        git config --global user.email "jose.gustavo@estudante.ifmt.edu.br"
+        git config --global user.name "GitHub Actions"
+        
+        git config --global user.email "actions@github.com
 
         git clone https://x-access-token:${{ secrets.TOKEN_GH }}@github.com/josewolffsantiago/CompassUOL-CI-CD-ArgoCD-Sprint6-PBJUN2025-DevSecOPs.git
         cd CompassUOL-CI-CD-ArgoCD-Sprint6-PBJUN2025-DevSecOPs/gitops-microservices/k8s
