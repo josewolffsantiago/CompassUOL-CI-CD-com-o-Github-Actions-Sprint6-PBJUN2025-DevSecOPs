@@ -29,9 +29,9 @@ jobs:
 
         git config --global user.email "jose.gustavo@estudante.ifmt.edu.br"
 
-        git clone https://x-access-token:${{ secrets.TOKEN_GH }}@github.com/josewolffsantiago/-CompassUOL-CI-CD-com-o-Github-Actions-Sprint6-PBJUN2025-DevSecOPs.git
+        git clone https://x-access-token:${{ secrets.TOKEN_GH }}@github.com/josewolffsantiago/CompassUOL-CI-CD-com-o-Github-Actions-Sprint6-PBJUN2025-DevSecOPs.git
 
-        cd -CompassUOL-CI-CD-com-o-Github-Actions-Sprint6-PBJUN2025-DevSecOPs/hello-app/main
+        cd CompassUOL-CI-CD-com-o-Github-Actions-Sprint6-PBJUN2025-DevSecOPs/hello-app/main
 
         sed -i 's/.*return.*/    return {\"message\": \"Hello World ${{ env.TAG }}\"}/' main.py
 
