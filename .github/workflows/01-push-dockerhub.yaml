@@ -47,7 +47,7 @@ jobs:
 
         git push
 
-jobs:
+docker:
   build:
     runs-on: ubuntu-latest
 
