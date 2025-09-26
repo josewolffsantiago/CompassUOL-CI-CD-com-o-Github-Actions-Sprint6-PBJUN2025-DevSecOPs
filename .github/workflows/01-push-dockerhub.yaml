@@ -34,6 +34,10 @@ jobs:
     - name: Modify main.py for Docker Build
       run: |
         sed -i 's/.*return.*/    return {\"message\": \"Hello World from docker hello-app:${{ env.TAG }}\"}/' ./hello-app/main/main.py
+
+        git config --global user.name "josewolffsantiago"
+
+        git config --global user.email "jose.gustavo@estudante.ifmt.edu.br"
         
         git add ./hello-app/main/main.py
 
