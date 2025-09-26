@@ -21,8 +21,8 @@ jobs:
         token: ${{ secrets.TOKEN_GH }} 
 
     
-    - name: Stop loops from github # Notei que estava em loop infinito com o github e vou testar este código
-      if: github.actor == 'github-actions'
+    - name: Stop loops from github # Notei que estava em loop infinito com o github e vou testar este código - v3 foi dada pelo Gemini
+      if: "!contains(github.event.head_commit.message, '[skip ci]')"
       run: |
         echo "Triggered by GitHub Actions bot — skipping workflow."
         exit 0
@@ -48,7 +48,7 @@ jobs:
 
         git add main.py
 
-        git commit -m "Update main.py with ${{ env.TAG }}"
+        git commit -m "Update main.py with ${{ env.TAG }} [skip ci]"
 
         git push
 
@@ -73,7 +73,7 @@ jobs:
 
         git add deployment.yaml
 
-        git commit -m "Update image to ${{ env.TAG }}"
+        git commit -m "Update image to ${{ env.TAG }} [skip ci]"
 
         git push
         
