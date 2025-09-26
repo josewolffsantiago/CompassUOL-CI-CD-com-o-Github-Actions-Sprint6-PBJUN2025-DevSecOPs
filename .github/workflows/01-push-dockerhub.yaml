@@ -34,7 +34,7 @@ jobs:
         git config --global user.email "jose.gustavo@estudante.ifmt.edu.br"
 
         git clone https://x-access-token:${{ secrets.TOKEN_GH }}@github.com/josewolffsantiago/CompassUOL-CI-CD-ArgoCD-Sprint6-PBJUN2025-DevSecOPs.git
-        cd gitops-microservices/k8s
+        cd CompassUOL-CI-CD-ArgoCD-Sprint6-PBJUN2025-DevSecOPs/gitops-microservices/k8s
 
         sed -i "s|image: .*|image: josesantiagowolff:${{ env.TAG }}|" deployment.yaml
 
