@@ -2,13 +2,9 @@ FROM python:3.14.0rc3-alpine3.22
 
 WORKDIR /app
 
-RUN apk add --no-cache gcc musl-dev libffi-dev openssl-dev python3-dev build-base
+RUN apk add --no-cache gcc musl-dev python3-dev
 
-COPY requirements.txt .
-
-RUN pip install --upgrade pip setuptools wheel
-
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install "fastapi[standard]" uvicorn
 
 COPY . .
 
