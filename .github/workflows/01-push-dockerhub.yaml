@@ -1,6 +1,7 @@
 name: Build and Push Docker Image
 
 on: push
+
     
 jobs:
   build:
@@ -8,6 +9,9 @@ jobs:
 
     env:
       TAG: ${{ github.sha }}
+
+    permissions:
+      contents: write   
 
 
     steps:
