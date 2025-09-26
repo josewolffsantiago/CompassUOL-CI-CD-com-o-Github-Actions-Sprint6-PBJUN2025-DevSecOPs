@@ -1,10 +1,10 @@
-FROM python:3.14.0rc3-alpine3.22
+FROM python:3.9-slim-buster
 
 WORKDIR /app
 
-RUN apk add --no-cache gcc musl-dev python3-dev
+COPY requirements.txt .
 
-RUN pip install "fastapi[standard]" uvicorn
+RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
