@@ -13,12 +13,33 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.TOKEN_GH  }} 
 
     - name: Login to Docker Hub
       uses: docker/login-action@v3
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: Make a Dockerfile - modify main.py #teste apenas, se der certo irá continuar.
+    #Sinceramente, acho mais simples usar o GH Actions para fazer o próprio Dockerfile, já que quero que ele crie também o main.py com a versão para ser atualizado.
+      run: |
+        git config --global user.name "josewolffsantiago"
+
+        git config --global user.email "jose.gustavo@estudante.ifmt.edu.br"
+
+        git clone https://x-access-token:${{ secrets.TOKEN_GH }}@github.com/josewolffsantiago/-CompassUOL-CI-CD-com-o-Github-Actions-Sprint6-PBJUN2025-DevSecOPs.git
+
+        cd -CompassUOL-CI-CD-com-o-Github-Actions-Sprint6-PBJUN2025-DevSecOPs/hello-app/main
+
+        sed -i 's/.*return.*/    return {\"message\": \"Hello World ${{ env.TAG }}\"}/' main.py
+
+        git add main.py
+
+        git commit -m "Update main.py with ${{ env.TAG }}"
+
+        git push
 
     - name: Build and push Docker image
       uses: docker/build-push-action@v5
@@ -30,7 +51,7 @@ jobs:
   
     - name: Clone repositorio do manifesto e Push
       run: |
-        git config --global user.name "josesantiagowolff"
+        git config --global user.name "josewolffsantiago"
         git config --global user.email "jose.gustavo@estudante.ifmt.edu.br"
 
         git clone https://x-access-token:${{ secrets.TOKEN_GH }}@github.com/josewolffsantiago/CompassUOL-CI-CD-ArgoCD-Sprint6-PBJUN2025-DevSecOPs.git
