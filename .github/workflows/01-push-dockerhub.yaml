@@ -33,7 +33,7 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.SSH_PRIVATE_KEY }}
 
-    - name: Make a Dockerfile - modify main.py #teste apenas, se der certo irá continuar.
+    - name: Modify main.py #teste apenas, se der certo irá continuar.
     #Sinceramente, acho mais simples usar o GH Actions para fazer o próprio Dockerfile, já que quero que ele crie também o main.py com a versão para ser atualizado.
       run: |
         git config --global user.name "GitHub Actions"
