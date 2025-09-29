@@ -35,9 +35,9 @@ jobs:
       run: |
         sed -i 's/.*return.*/    return {\"message\": \"Hello World from docker hello-app:${{ env.TAG }}\"}/' ./hello-app/main/main.py
 
-        git config --global user.name "josewolffsantiago"
+        git config --global user.name "github-actions"
 
-        git config --global user.email "jose.gustavo@estudante.ifmt.edu.br"
+        git config --global user.email "github-actions@github.com"
         
         git add ./hello-app/main/main.py
 
@@ -63,9 +63,9 @@ jobs:
   
     - name: Clone repositorio do manifesto e Push
       run: |
-        git config --global user.name "josewolffsantiago"
+        git config --global user.name "github-actions"
 
-        git config --global user.email "jose.gustavo@estudante.ifmt.edu.br"
+        git config --global user.email "github-actions@github.com"
 
         git clone https://x-access-token:${{ secrets.TOKEN_GH }}@github.com/josewolffsantiago/CompassUOL-CI-CD-ArgoCD-Sprint6-PBJUN2025-DevSecOPs.git
         
