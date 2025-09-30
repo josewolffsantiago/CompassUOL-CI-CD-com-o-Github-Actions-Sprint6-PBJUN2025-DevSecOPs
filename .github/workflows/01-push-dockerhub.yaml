@@ -33,7 +33,7 @@ jobs:
 
     - name: Modify main.py for Docker Build
       run: |
-        sed -i 's/.*return.*/    return {\"message\": \"Hello World from Kubernets, ArgoCD and add Grafana: hello-app:${{ env.TAG }}\"}/' ./hello-app/main/main.py
+        sed -i 's/.*message.*/    return {\"message\": \"Hello World from Kubernets, ArgoCD and add Grafana: hello-app:${{ env.TAG }}\"}/' ./hello-app/main/main.py
 
         sed -i 's/.*message.*/    assert response.json() == {\"message": \"Hello World from Kubernets, ArgoCD and add Grafana: hello-app:${{ env.TAG }}\"}/' ./hello-app/main/test_main.py
 
