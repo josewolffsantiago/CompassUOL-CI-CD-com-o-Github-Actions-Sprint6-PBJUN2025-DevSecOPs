@@ -1,5 +1,15 @@
 from fastapi import FastAPI
+from prometheus_client import Counter, generate_latest
+from starlette.responses import Response
+
 app = FastAPI()
+hits = Counter("hits", "Number of hits to the root")
+
 @app.get("/")
 async def root():
     return {"message": "Hello World v3"}
+
+@app.get("/metrics")
+def metrics():
+    return Response(generate_latest(), media_type="text/plain")
+
