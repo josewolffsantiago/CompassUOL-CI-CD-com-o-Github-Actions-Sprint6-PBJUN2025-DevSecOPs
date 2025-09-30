@@ -33,7 +33,7 @@ jobs:
 
     - name: Modify main.py for Docker Build
       run: |
-        sed -i 's/.*return.*/    return {\"message\": \"Hello World for Davi from Kubernets e ArgoCD auto sync: hello-app:${{ env.TAG }}\"}/' ./hello-app/main/main.py
+        sed -i 's/.*return.*/    return {\"message\": \"Hello World from Kubernets e ArgoCD 30-09-2025 08:30 GMT -3: hello-app:${{ env.TAG }}\"}/' ./hello-app/main/main.py
 
         git config --global user.name "github-actions"
 
