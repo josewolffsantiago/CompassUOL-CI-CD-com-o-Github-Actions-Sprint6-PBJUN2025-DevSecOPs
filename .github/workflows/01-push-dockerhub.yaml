@@ -41,7 +41,7 @@ jobs:
 
         git config --global user.email "github-actions@github.com"
         
-        git add ./hello-app/main/main.py
+        git add .
 
         git commit -m " Update main.py on ${{ env.TAG }} [skip ci]"
 
