@@ -6,7 +6,8 @@ app = FastAPI()
 hits = Counter("hits", "Number of hits to the root")
 
 @app.get("/")
-async def root():
+def read_root():
+    hits.inc()
     return {"message": "Hello World v3"}
 
 @app.get("/metrics")
