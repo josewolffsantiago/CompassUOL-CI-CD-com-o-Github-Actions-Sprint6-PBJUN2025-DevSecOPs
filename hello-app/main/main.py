@@ -8,7 +8,7 @@ hits = Counter("hits", "Number of hits to the root")
 @app.get("/")
 def read_root():
     hits.inc()
-    return {"message": "Hello World v4"}
+    return {"message": "Hello new port from Kubernets, ArgoCD and add Grafana: hello-app:d2afd2c1d1fcb07d5ca22390714dd9ab043618ec"}
 
 @app.get("/metrics")
 def metrics():
