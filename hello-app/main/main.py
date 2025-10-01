@@ -8,7 +8,7 @@ hits = Counter("hits", "Number of hits to the root")
 @app.get("/")
 def read_root():
     hits.inc()
-    return {"message": "Hello World v3"}
+    return {"message": "Hello World v4"}
 
 @app.get("/metrics")
 def metrics():
